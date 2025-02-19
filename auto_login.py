@@ -11,6 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
 
+
 @retry(wait_random_min=5000, wait_random_max=10000, stop_max_attempt_number=3)
 def enter_iframe(browser):
     logging.info("Enter login iframe")
@@ -29,7 +30,9 @@ def extension_login(email,password):
     chrome_options.add_extension('NetEaseMusicWorldPlus.crx')
 
     logging.info("Load Chrome driver")
-    browser = webdriver.Chrome(executable_path="chromedriver.exe", options=chrome_options)
+    service = ChromeService(ChromeDriverManager().install())
+    browser = webdriver.Chrome(service=service, options=chrome_options)
+    #browser = webdriver.Chrome(executable_path="chromedriver.exe", options=chrome_options)
     # browser = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
 
     # 设置全局的隐式等待(直到找到元素),20秒后找不到抛出找不到元素
