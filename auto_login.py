@@ -24,13 +24,14 @@ def enter_iframe(browser):
 # 失败后随机 1-3s 后重试，最多 3 次
 @retry(wait_random_min=1000, wait_random_max=3000, stop_max_attempt_number=5)
 def extension_login(email,password):
+    service = ChromeService("chromedriver.exe")
     chrome_options = webdriver.ChromeOptions()
 
     logging.info("Load Chrome extension NetEaseMusicWorldPlus")
     chrome_options.add_extension('NetEaseMusicWorldPlus.crx')
 
     logging.info("Load Chrome driver")
-    service = ChromeService(ChromeDriverManager().install())
+     
     browser = webdriver.Chrome(service=service, options=chrome_options)
     #browser = webdriver.Chrome(executable_path="chromedriver.exe", options=chrome_options)
     # browser = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
