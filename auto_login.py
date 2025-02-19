@@ -30,7 +30,7 @@ def extension_login(email,password):
     chrome_options.add_extension('NetEaseMusicWorldPlus.crx')
 
     logging.info("Load Chrome driver")
-    service = ChromeService(ChromeDriverManager(version="133.0.2789.170").install())
+    service = ChromeService(ChromeDriverManager().install())
     browser = webdriver.Chrome(service=service, options=chrome_options)
     #browser = webdriver.Chrome(executable_path="chromedriver.exe", options=chrome_options)
     # browser = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
